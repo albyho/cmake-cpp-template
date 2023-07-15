@@ -14,18 +14,7 @@ string(TOLOWER ${CMAKE_BUILD_TYPE} build_type)
 set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 
 # Debug 版增加 `d` 后缀
-set(CMAKE_DEBUG_POSTFIX "d") 
-
-set( SHARED_LIB_SOURCES
-    tubumu.cpp
-)
-add_library(tubumu SHARED ${SHARED_LIB_SOURCES})
-set_target_properties(tubumu
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../out/${build_type}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../out/${build_type}/lib"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../out/${build_type}/bin"
-)
+set(CMAKE_DEBUG_POSTFIX "d")
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
@@ -34,19 +23,6 @@ include(CPack)
 include(CTest)
 enable_testing()
 
-add_executable(tubumu-test tubumu-test.cpp)
+include(${PROJECT_SOURCE_DIR}/cmake/auto_create_projects.cmake)
+target_include_directories(tubumu-test PRIVATE ${CMAKE_SOURCE_DIR}/projects/tubumu)
 target_link_libraries(tubumu-test PRIVATE tubumu)
-set_target_properties(tubumu-test
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../out/${build_type}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../out/${build_type}/lib"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../out/${build_type}/bin"
-)
-
-# foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
-#     string( TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG )
-#     set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${CMAKE_SOURCE_DIR}/../out/${build_type}/lib )
-#     set( CMAKE_LIBRARY_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${CMAKE_SOURCE_DIR}/../out/${build_type}/lib )
-#     set( CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${CMAKE_SOURCE_DIR}/../out/${build_type}/bin )
-#     message("CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} : ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG}}")
-# endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )

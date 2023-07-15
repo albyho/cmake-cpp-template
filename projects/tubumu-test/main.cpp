@@ -1,6 +1,6 @@
 #include <iostream>
 #include "tubumu.h"
 
-void say_hello(){
-   say_hello();
+int main() {
+    say_hello();
 }

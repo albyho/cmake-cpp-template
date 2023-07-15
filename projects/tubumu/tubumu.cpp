@@ -1,6 +1,6 @@
 #include <iostream>
+#include "tubumu.h"
 
-int main()
-{
+void say_hello() {
     std::cout << "Hello!" << std::endl;
 }
