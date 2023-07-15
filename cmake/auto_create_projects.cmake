@@ -1,11 +1,17 @@
-function(create_output_directories build_type)
+# 设置输出目录函数，根据构建类型设置生成的文件的输出目录
+# 参数:
+#   - build_type: 构建类型，例如 Debug、Release 等
+function(set_output_directories build_type)
   set(output_dir "${CMAKE_BINARY_DIR}/../out/${build_type}")
-  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${output_dir}/lib")
-  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${output_dir}/lib")
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${output_dir}/bin")
+  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${output_dir}/lib")      # 设置静态库输出目录
+  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${output_dir}/lib")      # 设置动态库输出目录
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${output_dir}/bin")      # 设置可执行文件输出目录
 endfunction()
 
-# Function to create a project for each project
+# 根据给定的目录创建项目（可执行文件或库）
+# 参数:
+#   - project_dir: 项目目录路径
+#   - target_type: 目标类型，可选值为 "executable" 或 "library" 或 "shared_library"
 function(create_project project_dir target_type)
   get_filename_component(project_name ${project_dir} NAME)
   file(GLOB_RECURSE src_files 
@@ -30,10 +36,12 @@ function(create_project project_dir target_type)
     message(STATUS "######## Create shared library project: ${project_name}")
     add_library(${project_name} SHARED ${src_files})
   endif()
-  create_output_directories(${CMAKE_BUILD_TYPE})
+  set_output_directories(${CMAKE_BUILD_TYPE})      # 设置输出目录
 endfunction()
 
-# Iterate through subdirectories and create an executable for each one with a main.cpp file
+# 遍历子目录并为每个子目录创建项目（可执行文件或共享库）
+# 参数:
+#   - projects_dir: 子目录所在的父目录路径
 function(create_projects projects_dir)
   file(GLOB children RELATIVE ${projects_dir} ${projects_dir}/*)
   foreach (child ${children})
@@ -43,9 +51,9 @@ function(create_projects projects_dir)
         create_project(${projects_dir}/${child} "executable")
       else()
         create_project(${projects_dir}/${child} "shared_library")
-      endif ()
-    endif ()
-  endforeach ()
+      endif()
+    endif()
+  endforeach()
 endfunction()
 
 create_projects("${CMAKE_SOURCE_DIR}/projects")
