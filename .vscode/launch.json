@@ -1,17 +1,23 @@
 {
-    "version": "0.2.0",
+    "version": "2.0.0",
     "configurations": [
         {
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
+            "targetArchitecture": "arm64",
             "program": "${command:cmake.launchTargetPath}",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": true,
-            "internalConsoleOptions": "neverOpen",
+            "externalConsole": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "logging": {
+                "moduleLoad": false,
+                "programOutput": true,
+                "trace": false
+            },
             "MIMode": "lldb",
             "setupCommands": [
                 {
