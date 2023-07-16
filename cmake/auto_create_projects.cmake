@@ -27,7 +27,7 @@ function(create_project project_dir target_type)
     ${project_dir}/include/*.h
     ${project_dir}/*.hpp
     ${project_dir}/include/*.hpp
-    )
+  )
   if (target_type STREQUAL "executable")
     message(STATUS "######## Create executable project: ${project_name}")
     add_executable(${project_name} ${src_files})
