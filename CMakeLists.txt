@@ -31,8 +31,8 @@ enable_testing()
 
 include(${PROJECT_SOURCE_DIR}/cmake/auto_create_projects.cmake)
 add_subdirectory(projects/tubumu)
-set_output_directories("tubumu")
-create_projects("${CMAKE_SOURCE_DIR}/projects")
+set_output_directories(tubumu)
+create_projects(${CMAKE_SOURCE_DIR}/projects)
 
 # 添加 tubumu-test 的包含目录
 target_include_directories(tubumu-test PRIVATE ${CMAKE_SOURCE_DIR}/projects/tubumu)
