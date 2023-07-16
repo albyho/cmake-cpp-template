@@ -1,11 +1,13 @@
 # 设置输出目录函数，根据构建类型设置生成的文件的输出目录
-# 参数:
-#   - build_type: 构建类型，例如 Debug、Release 等
-function(set_output_directories build_type)
+function(set_output_directories target)
+  string(TOLOWER ${CMAKE_BUILD_TYPE} build_type)
   set(output_dir "${CMAKE_BINARY_DIR}/../out/${build_type}")
-  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${output_dir}/lib")      # 设置静态库输出目录
-  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${output_dir}/lib")      # 设置动态库输出目录
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${output_dir}/bin")      # 设置可执行文件输出目录
+  set_target_properties(${target}
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${output_dir}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${output_dir}/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${output_dir}/bin"
+  )
 endfunction()
 
 # 根据给定的目录创建项目（可执行文件或库）
@@ -36,7 +38,7 @@ function(create_project project_dir target_type)
     message(STATUS "######## Create shared library project: ${project_name}")
     add_library(${project_name} SHARED ${src_files})
   endif()
-  set_output_directories(${CMAKE_BUILD_TYPE})      # 设置输出目录
+  set_output_directories(${project_name})
 endfunction()
 
 # 遍历子目录并为每个子目录创建项目（可执行文件或共享库）
@@ -46,6 +48,11 @@ function(create_projects projects_dir)
   file(GLOB children RELATIVE ${projects_dir} ${projects_dir}/*)
   foreach (child ${children})
     if (IS_DIRECTORY ${projects_dir}/${child})
+      # 如果子目录中存在 CMakeLists.txt 文件则跳过
+      if (EXISTS ${projects_dir}/${child}/CMakeLists.txt)
+        continue()
+      endif()
+
       file(GLOB main_cpp_files ${projects_dir}/${child}/main.cpp)
       if (main_cpp_files)
         create_project(${projects_dir}/${child} "executable")
@@ -55,5 +62,3 @@ function(create_projects projects_dir)
     endif()
   endforeach()
 endfunction()
-
-create_projects("${CMAKE_SOURCE_DIR}/projects")
