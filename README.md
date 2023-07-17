@@ -14,7 +14,7 @@ cmake --build build
 ## 执行
 
 ``` sh
-./out/debug/bin/example-test
+./out/debug/example-test
 ```
 
 > 使用 `Visual Studio Code` 或其他 IDE 会更方便。

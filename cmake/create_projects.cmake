@@ -4,9 +4,9 @@ function(set_output_directories target)
   set(output_dir "${CMAKE_BINARY_DIR}/../out/${build_type}")
   set_target_properties(${target}
     PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${output_dir}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${output_dir}/lib"
-    RUNTIME_OUTPUT_DIRECTORY "${output_dir}/bin"
+    ARCHIVE_OUTPUT_DIRECTORY "${output_dir}"
+    LIBRARY_OUTPUT_DIRECTORY "${output_dir}"
+    RUNTIME_OUTPUT_DIRECTORY "${output_dir}"
   )
 endfunction()
 
