@@ -29,10 +29,7 @@ include(CPack)
 include(CTest)
 enable_testing()
 
-include(${PROJECT_SOURCE_DIR}/cmake/summary.cmake)
-summary()
-
-include(${PROJECT_SOURCE_DIR}/cmake/auto_create_projects.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/create_projects.cmake)
 create_projects(${CMAKE_SOURCE_DIR}/src)
 
 # 添加 tubumu-test 的包含目录

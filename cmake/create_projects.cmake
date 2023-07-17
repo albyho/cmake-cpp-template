@@ -1,4 +1,4 @@
-# 设置输出目录函数，根据构建类型设置生成的文件的输出目录
+# 设置输出目录
 function(set_output_directories target)
   string(TOLOWER ${CMAKE_BUILD_TYPE} build_type)
   set(output_dir "${CMAKE_BINARY_DIR}/../out/${build_type}")
@@ -18,16 +18,16 @@ function(create_project project_dir target_type)
   get_filename_component(project_name ${project_dir} NAME)
   file(GLOB_RECURSE src_files 
     ${project_dir}/*.c
-    ${project_dir}/src/*.c
     ${project_dir}/*.cc
-    ${project_dir}/src/*.cc
     ${project_dir}/*.cpp
+    ${project_dir}/src/*.c
+    ${project_dir}/src/*.cc
     ${project_dir}/src/*.cpp
-    ${project_dir}/*.h
-    ${project_dir}/include/*.h
-    ${project_dir}/*.hpp
-    ${project_dir}/include/*.hpp
   )
+
+  if(NOT src_files)
+    return()
+  endif()
 
   message(STATUS "******** Create project ********")
   message(STATUS "  Type             : ${target_type}")

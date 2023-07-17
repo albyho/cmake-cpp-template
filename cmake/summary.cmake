@@ -1,6 +1,6 @@
-function (summary)
+function (summary target)
   message(STATUS "")
-  message(STATUS "******** Summary ********")
+  message(STATUS "******** Summary: ${target} ********")
   message(STATUS "  CMake version             : ${CMAKE_VERSION}")
   message(STATUS "  CMake command             : ${CMAKE_COMMAND}")
   message(STATUS "  System                    : ${CMAKE_SYSTEM_NAME}")
