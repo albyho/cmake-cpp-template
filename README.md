@@ -15,7 +15,15 @@ cmake --build build
 ./out/debug/bin/example-test
 ```
 
-## c_cpp_properties.json
+## 约定
+
+1. 多个项目的源码分别放入 `src` 的子目录中。目录名和项目名称一致。
+1. 如果项目目录不包含 `CMakeLists.txt` 则会自动创建项目。在此基础上，如果包含 `main.cpp` 则会创建为可执行程序项目，否则为动态库项目。会收集项目根目录和项目 `src` 子目录里的 `*.c`、`*.cc` 和 `*.cpp` 作为源码。注意自动创建的项目并不会调用 `target_include_directories`，并且也不处理链接关系。
+1. 如果项目目录包含 `CMakeLists.txt` 则会自动创建项目。
+
+## Visual Studio Code 相关的配置
+
+### c_cpp_properties.json
 
 c_cpp_properties.json 是 Visual Studio Code 中用于配置 C/C++ 项目的文件。它的主要作用是为代码补全、语法检查和 IntelliSense 功能提供准确的代码分析和智能提示。
 
@@ -31,7 +39,7 @@ c_cpp_properties.json 是 Visual Studio Code 中用于配置 C/C++ 项目的文�
 
 通过提供准确的 c_cpp_properties.json 配置，Visual Studio Code 的 C/C++ 插件可以更好地理解和分析你的代码，提供更准确和有用的代码补全、语法检查和 IntelliSense 提示。
 
-## launch.json
+### launch.json
 
 launch.json 是 Visual Studio Code 中用于配置调试器的文件。它的主要作用是定义和配置调试会话，使你能够在 Visual Studio Code 中进行代码调试和查看程序的运行状态
 
@@ -49,7 +57,7 @@ launch.json 是 Visual Studio Code 中用于配置调试器的文件。它的主
 
 需要注意的是，launch.json 文件通常与其他配置文件（如 tasks.json、c_cpp_properties.json 等）一起使用，以构建完整的开发环境配置。这样可以确保代码补全、语法检查、自动构建和调试等功能能够协同工作，提供更好的开发体验。
 
-## tasks.json
+### tasks.json
 
 tasks.json 是 Visual Studio Code 中用于配置任务（Tasks）的文件。它的主要作用是定义和配置在开发过程中执行的自动化任务，如编译、构建、运行、部署等。
 
