@@ -28,14 +28,16 @@ function(create_project project_dir target_type)
     ${project_dir}/*.hpp
     ${project_dir}/include/*.hpp
   )
+
+  message(STATUS "******** Create project ********")
+  message(STATUS "  Type             : ${target_type}")
+  message(STATUS "  Name             : ${project_name}")
+
   if (target_type STREQUAL "executable")
-    message(STATUS "######## Create executable project: ${project_name}")
     add_executable(${project_name} ${src_files})
   elseif (target_type STREQUAL "library")
-    message(STATUS "######## Create library project: ${project_name}")
     add_library(${project_name} ${src_files})
   elseif (target_type STREQUAL "shared_library")
-    message(STATUS "######## Create shared library project: ${project_name}")
     add_library(${project_name} SHARED ${src_files})
   endif()
   set_output_directories(${project_name})

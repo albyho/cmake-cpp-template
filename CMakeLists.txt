@@ -1,7 +1,7 @@
 # 指定所需的最低 CMake 版本。
 cmake_minimum_required(VERSION 3.25)
 # 定义项目名称、版本号和支持的编程语言。
-project(tubumu VERSION 0.1.0 LANGUAGES C CXX)
+project(root VERSION 0.1.0 LANGUAGES C CXX)
 
 # 设置 C++ 标准为 C++17。
 set(CMAKE_CXX_STANDARD 17)
@@ -28,6 +28,9 @@ include(CPack)
 
 include(CTest)
 enable_testing()
+
+include(${PROJECT_SOURCE_DIR}/cmake/summary.cmake)
+summary()
 
 include(${PROJECT_SOURCE_DIR}/cmake/auto_create_projects.cmake)
 create_projects(${CMAKE_SOURCE_DIR}/src)
