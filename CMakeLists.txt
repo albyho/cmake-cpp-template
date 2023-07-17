@@ -30,11 +30,9 @@ include(CTest)
 enable_testing()
 
 include(${PROJECT_SOURCE_DIR}/cmake/auto_create_projects.cmake)
-add_subdirectory(projects/tubumu)
-set_output_directories(tubumu)
-create_projects(${CMAKE_SOURCE_DIR}/projects)
+create_projects(${CMAKE_SOURCE_DIR}/src)
 
 # 添加 tubumu-test 的包含目录
-target_include_directories(tubumu-test PRIVATE ${CMAKE_SOURCE_DIR}/projects/tubumu)
+target_include_directories(example-test PRIVATE ${CMAKE_SOURCE_DIR}/src/example)
 # 添加 tubumu-test 的链接库
-target_link_libraries(tubumu-test PRIVATE tubumu)
+target_link_libraries(example-test PRIVATE example)

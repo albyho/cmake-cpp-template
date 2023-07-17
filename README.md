@@ -4,14 +4,15 @@
 
 ``` sh
 cmake . -B build -DCMAKE_BUILD_TYPE=Debug
-cmake . -B build -DCMAKE_BUILD_TYPE=Release
+# 或 Release
+# cmake . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 ```
 
 ## 执行
 
 ``` sh
-./out/debug/bin/tubumu-test
+./out/debug/bin/example-test
 ```
 
 ## c_cpp_properties.json

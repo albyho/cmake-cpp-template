@@ -1,5 +1,5 @@
 #include <iostream>
-#include "tubumu.h"
+#include "example.h"
 
 void say_hello() {
     std::cout << "Hello!" << std::endl;
