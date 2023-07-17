@@ -52,7 +52,7 @@ function(create_projects projects_dir)
     if (IS_DIRECTORY ${projects_dir}/${child})
       # 如果子目录中存在 CMakeLists.txt 文件则跳过
       if (EXISTS ${projects_dir}/${child}/CMakeLists.txt)
-        # 注意：CMakeLists.txt 中 project 名称要和目录名相同
+        # 注意：CMakeLists.txt 中 project 名称要和目录名相同。因为 set_output_directories 依赖于项目名称。
         add_subdirectory(${projects_dir}/${child})
         set_output_directories(${child})
         continue()
