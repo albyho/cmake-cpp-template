@@ -9,11 +9,15 @@ cmake . -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 ```
 
+> 使用 `Visual Studio Code` 或其他 IDE 会更方便。
+
 ## 执行
 
 ``` sh
 ./out/debug/bin/example-test
 ```
+
+> 使用 `Visual Studio Code` 或其他 IDE 会更方便。
 
 ## 约定
 
