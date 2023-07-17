@@ -22,7 +22,7 @@ cmake --build build
 ## 约定
 
 1. 多个项目的源码分别放入 `src` 的子目录中。目录名和项目名称一致。
-1. 如果项目目录不包含 `CMakeLists.txt` 则会自动创建项目。在此基础上，如果包含 `main.cpp` 则会创建为可执行程序项目，否则为动态库项目。会收集项目根目录和项目 `src` 子目录里的 `*.c`、`*.cc` 和 `*.cpp` 作为源码。注意自动创建的项目并不会调用 `target_include_directories`，并且也不处理链接关系。
+1. 如果项目目录不包含 `CMakeLists.txt` 则会自动创建项目。在此基础上，如果包含 `main.cpp` 则会创建为可执行程序项目，否则为动态库项目。会收集项目根目录和项目 `src` 子目录里的 `*.c`、`*.cc` 和 `*.cpp` 作为源码。注意自动创建的项目并不会调用 `target_include_directories` 和 `target_link_libraries`，需自行处理包含关系和链接关系。
 1. 如果项目目录包含 `CMakeLists.txt` 则会自动创建项目。
 
 ## Visual Studio Code 相关的配置
