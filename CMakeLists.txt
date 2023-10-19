@@ -22,6 +22,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 # 在生成的文件名后添加 "d" 后缀，用于区分 Debug 版本和 Release 版本的文件。
 set(CMAKE_DEBUG_POSTFIX "d")
 
+# 配置 rpath
+include(${PROJECT_SOURCE_DIR}/cmake/configure-rpath.cmake)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
@@ -32,7 +35,6 @@ enable_testing()
 include(${PROJECT_SOURCE_DIR}/cmake/create_projects.cmake)
 create_projects(${CMAKE_SOURCE_DIR}/src)
 
-# 添加 tubumu-test 的包含目录
+# tubumu-test 项目额外的配置
 target_include_directories(example-test PRIVATE ${CMAKE_SOURCE_DIR}/src/example)
-# 添加 tubumu-test 的链接库
 target_link_libraries(example-test PRIVATE example)
