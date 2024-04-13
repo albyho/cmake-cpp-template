@@ -6,6 +6,8 @@
 cmake . -B build -DCMAKE_BUILD_TYPE=Debug
 # 或 Release
 # cmake . -B build -DCMAKE_BUILD_TYPE=Release
+# 或省略 `-DCMAKE_BUILD_TYPE=Release` 默认是 Release
+# cmake . -B build
 cmake --build build
 ```
 
@@ -14,7 +16,7 @@ cmake --build build
 ## 执行
 
 ``` sh
-./out/debug/example-test
+./out/debug/example_test
 ```
 
 > 使用 `Visual Studio Code` 或其他 IDE 会更方便。

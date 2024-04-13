@@ -22,7 +22,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 set(CMAKE_DEBUG_POSTFIX "d")
 
 # 配置 rpath
-include(${PROJECT_SOURCE_DIR}/cmake/create_projects.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/configure-rpath.cmake)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
@@ -34,6 +34,6 @@ enable_testing()
 include(${PROJECT_SOURCE_DIR}/cmake/create_projects.cmake)
 create_projects(${CMAKE_SOURCE_DIR}/src)
 
-# 自动创建的 tubumu-test 项目需要额外的配置
-target_include_directories(example-test PRIVATE ${CMAKE_SOURCE_DIR}/src/example)
-target_link_libraries(example-test PRIVATE example)
+# 自动创建的 example_test 项目需要额外的配置
+target_include_directories(example_test PRIVATE ${CMAKE_SOURCE_DIR}/src/example)
+target_link_libraries(example_test PRIVATE example)
