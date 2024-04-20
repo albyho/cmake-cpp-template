@@ -22,7 +22,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 set(CMAKE_DEBUG_POSTFIX "_debug")
 
 # 配置 rpath
-include(${PROJECT_SOURCE_DIR}/cmake/configure-rpath.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/configure_rpath.cmake)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
