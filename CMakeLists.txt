@@ -18,8 +18,8 @@ endif()
 # 生成 compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 
-# 在生成的文件名后添加 "d" 后缀，用于区分 Debug 版本和 Release 版本的文件。
-set(CMAKE_DEBUG_POSTFIX "d")
+# 在生成的文件名后添加 "_debug" 后缀，用于区分 Debug 版本和 Release 版本的文件。
+set(CMAKE_DEBUG_POSTFIX "_debug")
 
 # 配置 rpath
 include(${PROJECT_SOURCE_DIR}/cmake/configure-rpath.cmake)
