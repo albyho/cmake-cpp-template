@@ -8,6 +8,9 @@ cmake . -B build -DCMAKE_BUILD_TYPE=Debug
 # cmake . -B build -DCMAKE_BUILD_TYPE=Release
 # 或省略 `-DCMAKE_BUILD_TYPE=Release` 默认是 Release
 # cmake . -B build
+```
+
+``` sh
 cmake --build build
 ```
 
